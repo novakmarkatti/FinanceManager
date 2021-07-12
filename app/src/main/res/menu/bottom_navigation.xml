@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_kategoriak"
+        android:icon="@drawable/kategoriak_ikon"
+        android:title="Kategóriák" />
+
+    <item
+        android:id="@+id/nav_tranzakciok"
+        android:icon="@drawable/tranzakciok_ikon"
+        android:title="Tranzakciók" />
+
+    <item
+        android:id="@+id/nav_attekintes"
+        android:icon="@drawable/attekintes_ikon"
+        android:title="Áttekintés" />
+
+</menu>
