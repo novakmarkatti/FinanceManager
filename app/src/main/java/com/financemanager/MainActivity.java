@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentKategoriak() ).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentKategoriak() ).commit();
+                                                        //fragment_container
 
 /*
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -57,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    Log.e("output", String.valueOf(getSupportFragmentManager().getBackStackEntryCount() ) );
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, selectedFragment).commit();
+                                                                                //fragment_container
                     return true;
                 }
             };
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

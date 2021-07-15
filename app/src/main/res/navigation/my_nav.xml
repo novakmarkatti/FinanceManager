@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/fragmentKategoriak">
+
+    <fragment
+        android:id="@+id/fragmentKategoriak"
+        android:name="com.financemanager.FragmentKategoriak"
+        android:label="FragmentKategoriak"
+        tools:layout="@layout/fragment_kategoriak">
+        <action
+            android:id="@+id/action_fragmentKategoriak_to_fragmentKategoriakBevetel"
+            app:destination="@id/fragmentKategoriakBevetel" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentKategoriakBevetel"
+        android:name="com.financemanager.FragmentKategoriakBevetel"
+        android:label="fragment_kategoriak_bevetel"
+        tools:layout="@layout/fragment_kategoriak_bevetel" >
+        <action
+            android:id="@+id/action_fragmentKategoriakBevetel_to_fragmentKategoriak"
+            app:destination="@id/fragmentKategoriak" />
+    </fragment>
+</navigation>

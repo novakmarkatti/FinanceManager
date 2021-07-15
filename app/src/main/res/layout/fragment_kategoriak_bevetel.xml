@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    tools:context=".FragmentKategoriakBevetel"
+    android:background="@android:color/holo_red_light">
 
 
     <TextView
-        android:id="@+id/egyes"
+        android:id="@+id/kettes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:text="2"
         android:textSize="100sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_centerInParent="true"/>
-
-
 </RelativeLayout>
-
-
-
-
-

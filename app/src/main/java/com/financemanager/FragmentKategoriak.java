@@ -1,57 +1,43 @@
 package com.financemanager;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class FragmentKategoriak extends Fragment {
-
-    Button fragment1btn, fragment2btn;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_kategoriak, container, false);
 
-
-/*
-        fragment2btn = findViewById(R.id.fragment2btn);
-        fragment2btn.setOnClickListener(new View.OnClickListener() {
+        TextView gomb = (TextView) rootView.findViewById(R.id.egyes);
+        gomb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment( new FragmentKategoriakMasodik() );
+                Navigation.findNavController(rootView).navigate(R.id.action_fragmentKategoriak_to_fragmentKategoriakBevetel);
             }
         });
 
-        fragment1btn = findViewById(R.id.fragment1btn);
-        fragment1btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment( new FragmentKategoriakElso() );
-            }
-        });
-*/
+        return rootView;
+    }
 
-        return inflater.inflate(R.layout.fragment_kategoriak, container, false);
-        //return super.onCreateView(inflater, container, savedInstanceState);
-    }
-/*
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
-    }
-*/
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
 }
