@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -19,9 +20,8 @@ public class FragmentKategoriakBevetel extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_kategoriak_bevetel, container, false);
 
-        TextView gomb = (TextView) rootView.findViewById(R.id.kettes);
-        gomb.setOnClickListener(new View.OnClickListener() {
-            @Override
+        final Button button =(Button) rootView.findViewById(R.id.kettes);
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Navigation.findNavController(rootView).navigate(R.id.action_fragmentKategoriakBevetel_to_fragmentKategoriak);
             }

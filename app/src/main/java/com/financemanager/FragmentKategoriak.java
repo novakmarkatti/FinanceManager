@@ -25,9 +25,8 @@ public class FragmentKategoriak extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_kategoriak, container, false);
 
-        TextView gomb = (TextView) rootView.findViewById(R.id.egyes);
-        gomb.setOnClickListener(new View.OnClickListener() {
-            @Override
+        final Button button =(Button) rootView.findViewById(R.id.egyes);
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Navigation.findNavController(rootView).navigate(R.id.action_fragmentKategoriak_to_fragmentKategoriakBevetel);
             }
