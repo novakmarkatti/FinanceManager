@@ -23,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment);
+        if(fragment != null)
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentKategoriak() ).commit();
@@ -61,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    Log.e("output", String.valueOf(getSupportFragmentManager().getBackStackEntryCount() ) );
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, selectedFragment).commit();
                                                                                 //fragment_container
                     return true;

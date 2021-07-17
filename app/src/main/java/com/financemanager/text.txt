@@ -20,3 +20,64 @@ activity_main.xml -ben a FloatingActionButton
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+
+---
+nav-os xml
+----
+
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/fragmentKategoriak">
+
+    <fragment
+        android:id="@+id/fragmentKategoriak"
+        android:name="com.financemanager.FragmentKategoriak"
+        android:label="FragmentKategoriak"
+        tools:layout="@layout/fragment_kategoriak">
+        <action
+            android:id="@+id/action_fragmentKategoriak_to_fragmentKategoriakBevetel"
+            app:destination="@id/fragmentKategoriakBevetel" />
+        <action
+            android:id="@+id/action_fragmentKategoriak_to_fragmentAttekintes"
+            app:destination="@id/fragmentAttekintes" />
+        <action
+            android:id="@+id/action_fragmentKategoriak_to_fragmentTranzakciok"
+            app:destination="@id/fragmentTranzakciok" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentKategoriakBevetel"
+        android:name="com.financemanager.FragmentKategoriakBevetel"
+        android:label="fragment_kategoriak_bevetel"
+        tools:layout="@layout/fragment_kategoriak_bevetel" >
+        <action
+            android:id="@+id/action_fragmentKategoriakBevetel_to_fragmentKategoriak"
+            app:destination="@id/fragmentKategoriak" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAttekintes"
+        android:name="com.financemanager.FragmentAttekintes"
+        android:label="FragmentAttekintes"
+        tools:layout="@layout/fragment_attekintes">
+        <action
+            android:id="@+id/action_fragmentAttekintes_to_fragmentKategoriak"
+            app:destination="@id/fragmentKategoriak" />
+        <action
+            android:id="@+id/action_fragmentAttekintes_to_fragmentTranzakciok"
+            app:destination="@id/fragmentTranzakciok" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTranzakciok"
+        android:name="com.financemanager.FragmentTranzakciok"
+        android:label="FragmentTranzakciok"
+        tools:layout="@layout/fragment_tranzakciok">
+        <action
+            android:id="@+id/action_fragmentTranzakciok_to_fragmentKategoriak"
+            app:destination="@id/fragmentKategoriak" />
+        <action
+            android:id="@+id/action_fragmentTranzakciok_to_fragmentAttekintes"
+            app:destination="@id/fragmentAttekintes" />
+    </fragment>
+</navigation>
