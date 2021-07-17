@@ -9,23 +9,37 @@
     android:layout_marginRight="40dp"
     tools:context=".AddActivity">
 
-
-    <EditText
-        android:id="@+id/type"
+    <LinearLayout
+        android:id="@+id/tarolo1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:enabled="false"/>
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <EditText
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:enabled="false"
+            android:hint="Tipus"/>
+
+        <Button
+            android:id="@+id/typeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_toEndOf="@+id/type"
+            android:layout_marginStart="20dp"
+            android:onClick="handleTypeChooser"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/type"
+        android:layout_below="@+id/tarolo1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:ems="10"
@@ -43,25 +57,45 @@
         android:inputType="number"
         android:hint="Penzmennyiseg"/>
 
-    <EditText
-        android:id="@+id/date"
+
+    <LinearLayout
+        android:id="@+id/tarolo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/value"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="date"
-        android:hint="Datum"/>
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:enabled="false"
+            android:hint="Datum"/>
+        <Button
+            android:id="@+id/dateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_toEndOf="@+id/type"
+            android:layout_marginStart="20dp"
+            android:onClick="handleDateChooser"/>
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/addToDB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/date"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tarolo2"
+        android:layout_marginTop="30dp"
         android:text="Hozzaadas"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="handleHozzaadas" />
 
 
 </RelativeLayout>
