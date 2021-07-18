@@ -11,7 +11,7 @@
         android:theme="@style/Theme.FinanceManager">
         <activity
             android:name=".Tranzakciok.UpdateActivity"
-            android:label="Update transaction"
+            android:label="Manage transaction"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Tranzakciok.AddActivity"

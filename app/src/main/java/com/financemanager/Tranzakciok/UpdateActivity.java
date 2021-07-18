@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.financemanager.R;
@@ -21,7 +20,7 @@ import java.util.List;
 public class UpdateActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private EditText TYPE_input, CATEGORY_input, VALUE_input, DATE_input;
-    private Button update_button;
+    private Button update_button, delete_button;
     private String id, TYPE, CATEGORY, VALUE, DATE;
 
     @Override
@@ -48,14 +47,23 @@ public class UpdateActivity extends AppCompatActivity implements DatePickerDialo
             }
         });
 
+        delete_button    = findViewById(R.id.addToDB_delete);
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseHelper db = new DatabaseHelper(UpdateActivity.this);
+                db.deleteOneRow(id);
+            }
+        });
+
     }
 
     public void getAndSetIntentData(){
         if( getIntent().hasExtra("id_elem") &&
-                getIntent().hasExtra("TYPE_elem") &&
-                getIntent().hasExtra("CATEGORY_elem") &&
-                getIntent().hasExtra("VALUE_elem") &&
-                getIntent().hasExtra("DATE_elem") ) {
+            getIntent().hasExtra("TYPE_elem") &&
+            getIntent().hasExtra("CATEGORY_elem") &&
+            getIntent().hasExtra("VALUE_elem") &&
+            getIntent().hasExtra("DATE_elem") ) {
             // getting data from intent
             id      = getIntent().getStringExtra("id_elem");
             TYPE    = getIntent().getStringExtra("TYPE_elem");
@@ -67,12 +75,7 @@ public class UpdateActivity extends AppCompatActivity implements DatePickerDialo
             CATEGORY_input.setText(CATEGORY);
             VALUE_input.setText(VALUE);
             DATE_input.setText(DATE);
-
-        }else {
-            Toast.makeText( this,"No data", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     public void handleTypeChooser(View view) {

@@ -23,7 +23,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:enabled="false"
-            android:hint="Tipus"/>
+            android:hint="Típus"/>
 
         <Button
             android:id="@+id/typeBtn_update"
@@ -71,7 +71,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="number"
-        android:hint="Penzmennyiseg"/>
+        android:hint="Pénzmennyiség"/>
 
 
     <LinearLayout
@@ -90,7 +90,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:enabled="false"
-            android:hint="Datum"/>
+            android:hint="Dátum"/>
         <Button
             android:id="@+id/dateBtn_update"
             android:layout_width="wrap_content"
@@ -109,8 +109,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tarolo2_update"
         android:layout_marginTop="30dp"
-        android:text="Modositas"
+        android:text="Módosítás"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:id="@+id/addToDB_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addToDB_update"
+        android:layout_marginTop="20dp"
+        android:text="Törlés"
+        android:textColor="@color/red"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

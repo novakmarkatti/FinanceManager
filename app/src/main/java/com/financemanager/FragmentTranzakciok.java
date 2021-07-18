@@ -7,12 +7,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +44,8 @@ public class FragmentTranzakciok extends Fragment {
     private ArrayList<String> DATE;
     private CustomAdapter customAdapter;
     private RecyclerView recyclerView;
-
+    private ImageView empty_imageView;
+    private TextView no_data;
     private boolean handleDateChooser1Btn = false;
     private boolean handleDateChooser2Btn = false;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
@@ -46,6 +53,7 @@ public class FragmentTranzakciok extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.fragment_tranzakciok, container, false);
 
         final Button button1 =(Button) rootView.findViewById(R.id.kezdoDatumBtn);
@@ -65,6 +73,9 @@ public class FragmentTranzakciok extends Fragment {
                 handleDateChooser2Btn = true;
             }
         });
+
+        empty_imageView = (ImageView) rootView.findViewById(R.id.no_data_imageview);
+        no_data         = (TextView) rootView.findViewById(R.id.no_data_textview);
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -146,7 +157,8 @@ public class FragmentTranzakciok extends Fragment {
     void storeDataInArrays(String start, String end){
         Cursor cursor = dbhelper.readAllData(start, end);
         if(cursor.getCount() == 0) {
-            Toast.makeText( getContext(), "No data", Toast.LENGTH_SHORT).show();
+            empty_imageView.setVisibility(View.VISIBLE);
+            no_data.setVisibility(View.VISIBLE);
         }else{
             while(cursor.moveToNext()){
                 id.add(cursor.getString(0));
@@ -155,9 +167,26 @@ public class FragmentTranzakciok extends Fragment {
                 VALUE.add(cursor.getString(3));
                 DATE.add(cursor.getString(4));
             }
+            empty_imageView.setVisibility(View.GONE);
+            no_data.setVisibility(View.GONE);
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuInflater inflater_menu = getActivity().getMenuInflater();
+        inflater_menu.inflate(R.menu.update_delete_menubar, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.delete_all){
+            DatabaseHelper db = new DatabaseHelper(getContext());
+            db.deleteAllData();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
