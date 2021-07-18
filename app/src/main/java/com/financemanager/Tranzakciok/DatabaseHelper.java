@@ -1,4 +1,4 @@
-package com.financemanager;
+package com.financemanager.Tranzakciok;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -55,14 +57,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DATE, DATE );
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){
-            Toast.makeText( context,"Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText( context,"Add failed", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText( context,"Added succsesfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText( context,"Added successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
-    Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME;
+    public Cursor readAllData(String start, String end){
+        String query;
+        if(!start.equals("") && !end.equals("")){
+            query = "SELECT * FROM " + TABLE_NAME + " WHERE date between \"" + start + "\" and \"" + end + "\" order by date DESC";
+        } else if(!start.equals("") && end.equals("")) {
+            query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + start + "\" order by date DESC";
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
+            String currentDateandTime = sdf.format(new Date());
+            query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + currentDateandTime + "\" order by date DESC";
+        }
+
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if(db!= null){
@@ -83,7 +96,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText( context,"Failed to update", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText( context,"Updated succsesfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText( context,"Updated successfully", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    public Cursor getCategories(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT DISTINCT category FROM " + TABLE_NAME, null);
+        return c;
     }
 }

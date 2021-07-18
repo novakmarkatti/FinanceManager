@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/smoke_white">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,4 +28,59 @@
         android:layout_marginBottom="80dp" />
 
 
+
+
+    <Button
+        android:id="@+id/kezdoDatumBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/kezdoDatumText"
+        android:layout_marginStart="10dp"
+        android:onClick="handleDateChooser1"
+        android:text="Start" />
+
+    <TextView
+        android:id="@+id/kezdoDatumText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:text=""
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/kotojel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/kezdoDatumText"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="3dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/vegzoDatumBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/vegzoDatumText"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/kezdoDatumBtn"
+        android:onClick="handleDateChooser2"
+        android:text="End" />
+
+    <TextView
+        android:id="@+id/vegzoDatumText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/kotojel"
+        android:text=""
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
 </RelativeLayout>

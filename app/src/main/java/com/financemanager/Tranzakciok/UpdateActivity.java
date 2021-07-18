@@ -1,22 +1,22 @@
-package com.financemanager;
+package com.financemanager.Tranzakciok;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.financemanager.R;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class UpdateActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -106,6 +106,45 @@ public class UpdateActivity extends AppCompatActivity implements DatePickerDialo
         alert.show();
     }
 
+    public void handleCategoryChooser(View view){
+        DatabaseHelper db = new DatabaseHelper(UpdateActivity.this);
+        List<String> listItems = new ArrayList<String>();
+        Cursor c = db.getCategories();
+        if (c.moveToFirst()){
+            do {
+                String temp = c.getString(0);
+                listItems.add(temp);
+            } while(c.moveToNext());
+        }
+        c.close();
+        db.close();
+
+        CharSequence[] charSequenceItems = listItems.toArray(new CharSequence[listItems.size()]);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Kategoria tipus");
+        dialog.setItems( charSequenceItems, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int position) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        EditText type = findViewById(R.id.category_update);
+                        type.setText(charSequenceItems[position]);
+                    }
+                }, 100);
+            }
+        });
+        dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = dialog.create();
+        alert.show();
+    }
+
     public void handleDateChooser(View view){
         DatePickerDialog dpd = new DatePickerDialog(this, this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         dpd.show();
@@ -113,6 +152,7 @@ public class UpdateActivity extends AppCompatActivity implements DatePickerDialo
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
         String date = year + "/" + month + "/" + dayOfMonth;
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {

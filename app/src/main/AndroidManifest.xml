@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceManager">
         <activity
-            android:name=".UpdateActivity"
+            android:name=".Tranzakciok.UpdateActivity"
             android:label="Update transaction"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".AddActivity"
+            android:name=".Tranzakciok.AddActivity"
             android:label="Add transaction"
             android:parentActivityName=".MainActivity" />
         <activity

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
-    tools:context=".AddActivity">
+    tools:context=".Tranzakciok.AddActivity">
 
     <LinearLayout
         android:id="@+id/tarolo1"
@@ -35,22 +35,40 @@
             android:onClick="handleTypeChooser"/>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/category"
+    <LinearLayout
+        android:id="@+id/tarolo3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tarolo1"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Kategória" />
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Kategória" />
+
+        <Button
+            android:id="@+id/categoryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_toEndOf="@+id/category"
+            android:layout_marginStart="20dp"
+            android:onClick="handleCategoryChooser"/>
+    </LinearLayout>
+
+
 
     <EditText
         android:id="@+id/value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/category"
+        android:layout_below="@+id/tarolo3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:ems="10"

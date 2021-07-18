@@ -1,9 +1,8 @@
-package com.financemanager;
+package com.financemanager.Tranzakciok;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
+import com.financemanager.R;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList id, TYPE, CATEGORY, VALUE, DATE;
 
-    CustomAdapter(Context context, ArrayList id, ArrayList TYPE, ArrayList CATEGORY, ArrayList VALUE, ArrayList DATE  ){
+    public CustomAdapter(Context context, ArrayList id, ArrayList TYPE, ArrayList CATEGORY, ArrayList VALUE, ArrayList DATE){
         this.context = context;
         this.id = id;
         this.TYPE = TYPE;
