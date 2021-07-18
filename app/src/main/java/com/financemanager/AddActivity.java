@@ -14,16 +14,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AddActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-/*
-    private EditText TYPE;
-    private EditText CATEGORY;
-    private EditText VALUE;
-    private EditText DATE;
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +34,23 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         EditText DATE       = findViewById(R.id.date);
 
         DatabaseHelper db = new DatabaseHelper(AddActivity.this);
-        db.addTranzakcio(   TYPE.getText().toString().trim() ,
-                            CATEGORY.getText().toString().trim() ,
-                            Integer.parseInt(VALUE.getText().toString().trim()),
-                            DATE.getText().toString().trim()      );
+
+        if( DATE.getText().toString().equals("") ){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
+            String currentDateandTime = sdf.format(new Date());
+
+            db.addTranzakcio(   TYPE.getText().toString().trim() ,
+                    CATEGORY.getText().toString().trim() ,
+                    Integer.parseInt(VALUE.getText().toString().trim()),
+                    currentDateandTime      );
+        }else{
+            db.addTranzakcio(   TYPE.getText().toString().trim() ,
+                    CATEGORY.getText().toString().trim() ,
+                    Integer.parseInt(VALUE.getText().toString().trim()),
+                    DATE.getText().toString().trim()      );
+        }
+
+
     }
 
     public void handleTypeChooser(View view) {

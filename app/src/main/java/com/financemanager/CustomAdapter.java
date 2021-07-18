@@ -1,15 +1,23 @@
 package com.financemanager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -36,12 +44,31 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.CATEGORY_elem.setText(String.valueOf(CATEGORY.get(position)));
-        holder.VALUE_elem.setText(String.valueOf(VALUE.get(position)));
-
         holder.id_elem.setText(String.valueOf(id.get(position)));
         holder.TYPE_elem.setText(String.valueOf(TYPE.get(position)));
+        holder.CATEGORY_elem.setText(String.valueOf(CATEGORY.get(position)));
+        if( String.valueOf(TYPE.get(position)).equals("Bevétel") ) {
+            holder.VALUE_elem.setText("+ " + String.valueOf(VALUE.get(position)));
+            holder.VALUE_elem.setTextColor(Color.GREEN);
+
+        } else if( String.valueOf(TYPE.get(position)).equals("Kiadás") ) {
+            holder.VALUE_elem.setText("- " + String.valueOf(VALUE.get(position)));
+            holder.VALUE_elem.setTextColor(Color.RED);
+        }
         holder.DATE_elem.setText(String.valueOf(DATE.get(position)));
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id_elem"       ,  String.valueOf(id.get(position)) );
+                intent.putExtra("TYPE_elem"     ,  String.valueOf(TYPE.get(position)) );
+                intent.putExtra("CATEGORY_elem" ,  String.valueOf(CATEGORY.get(position)) );
+                intent.putExtra("VALUE_elem"    ,  String.valueOf(VALUE.get(position)) );
+                intent.putExtra("DATE_elem"     ,  String.valueOf(DATE.get(position)) );
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -52,14 +79,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView id_elem, TYPE_elem, CATEGORY_elem, VALUE_elem, DATE_elem;
+        private LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            id_elem=itemView.findViewById(R.id.id_elem);
-            CATEGORY_elem=itemView.findViewById(R.id.category_elem);
-            VALUE_elem=itemView.findViewById(R.id.value_elem);
-            TYPE_elem=itemView.findViewById(R.id.type_elem);
-            DATE_elem=itemView.findViewById(R.id.date_elem);
+            id_elem         =itemView.findViewById(R.id.id_elem);
+            CATEGORY_elem   =itemView.findViewById(R.id.category_elem);
+            VALUE_elem      =itemView.findViewById(R.id.value_elem);
+            TYPE_elem       =itemView.findViewById(R.id.type_elem);
+            DATE_elem       =itemView.findViewById(R.id.date_elem);
+            mainLayout      =itemView.findViewById(R.id.mainLayout);
         }
     }
 }

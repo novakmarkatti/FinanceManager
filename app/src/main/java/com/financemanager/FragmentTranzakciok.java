@@ -52,13 +52,15 @@ public class FragmentTranzakciok extends Fragment {
         DATE  = new ArrayList<>();
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(getContext(), id, TYPE, CATEGORY, VALUE, DATE );
+        customAdapter = new CustomAdapter( getContext(), id, TYPE, CATEGORY, VALUE, DATE );
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager( getActivity() ));
 
         return rootView;
     }
+
+
 
     void storeDataInArrays(){
         Cursor cursor = dbhelper.readAllData();

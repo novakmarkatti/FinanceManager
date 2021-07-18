@@ -1,8 +1,10 @@
 package com.financemanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentKategoriak() ).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentKategoriak() ).commit();
                                                         //fragment_container
 
 /*
@@ -45,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
  */
     }
-
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {

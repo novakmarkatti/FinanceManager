@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addTranzakcio(String TYPE, String CATEGORY, int VALUE, String DATE){
+    public void addTranzakcio(String TYPE, String CATEGORY, int VALUE, String DATE){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TYPE, TYPE);
@@ -69,5 +69,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query,null);
         }
         return cursor;
+    }
+
+    public void updateData(String row_id, String TYPE, String CATEGORY, int VALUE, String DATE){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TYPE, TYPE);
+        cv.put(COLUMN_CATEGORY, CATEGORY);
+        cv.put(COLUMN_VALUE, VALUE);
+        cv.put(COLUMN_DATE, DATE );
+
+        long result = db.update(TABLE_NAME, cv, "id=?", new String[]{row_id} );
+        if(result == -1){
+            Toast.makeText( context,"Failed to update", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText( context,"Updated succsesfully", Toast.LENGTH_SHORT).show();
+        }
     }
 }
