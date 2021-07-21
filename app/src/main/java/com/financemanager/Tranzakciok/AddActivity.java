@@ -38,21 +38,26 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         EditText DATE       = findViewById(R.id.date);
 
         DatabaseHelper db = new DatabaseHelper(AddActivity.this);
+        String TYPE_str, CATEGORY_str, DATE_str;
+        int VALUE_str;
+
+        TYPE_str     = TYPE.getText().toString().trim();
+        CATEGORY_str = CATEGORY.getText().toString().trim();
+
+        if( TYPE_str.equals("Bevétel") ){
+            VALUE_str = Integer.parseInt(VALUE.getText().toString().trim());
+        }else{
+            VALUE_str = Integer.parseInt("-" + VALUE.getText().toString().trim());
+        }
 
         if( DATE.getText().toString().equals("") ){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
-            String currentDateandTime = sdf.format(new Date());
-
-            db.addTranzakcio(   TYPE.getText().toString().trim() ,
-                    CATEGORY.getText().toString().trim() ,
-                    Integer.parseInt(VALUE.getText().toString().trim()),
-                    currentDateandTime      );
+            DATE_str = sdf.format(new Date());
         }else{
-            db.addTranzakcio(   TYPE.getText().toString().trim() ,
-                    CATEGORY.getText().toString().trim() ,
-                    Integer.parseInt(VALUE.getText().toString().trim()),
-                    DATE.getText().toString().trim()      );
+            DATE_str = DATE.getText().toString().trim();
         }
+
+        db.addTranzakcio(TYPE_str, CATEGORY_str, VALUE_str, DATE_str     );
 
     }
 

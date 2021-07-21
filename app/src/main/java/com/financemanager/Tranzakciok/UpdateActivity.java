@@ -13,9 +13,13 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.financemanager.R;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class UpdateActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -41,8 +45,20 @@ public class UpdateActivity extends AppCompatActivity implements DatePickerDialo
                 DatabaseHelper db = new DatabaseHelper(UpdateActivity.this);
                 TYPE    = TYPE_input.getText().toString().trim();
                 CATEGORY= CATEGORY_input.getText().toString().trim();
-                VALUE   = VALUE_input.getText().toString().trim();
-                DATE    = DATE_input.getText().toString().trim();
+
+                if( TYPE.equals("Bevétel") ){
+                    VALUE = VALUE_input.getText().toString().trim();
+                }else{
+                    VALUE = "-" + VALUE_input.getText().toString().trim();
+                }
+
+                if( DATE_input.getText().toString().trim().equals("") ){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
+                    DATE = sdf.format(new Date());
+                }else{
+                    DATE = DATE_input.getText().toString().trim();
+                }
+
                 db.updateData(id , TYPE , CATEGORY , Integer.parseInt(VALUE), DATE);
             }
         });

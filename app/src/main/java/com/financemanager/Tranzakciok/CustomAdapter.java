@@ -45,11 +45,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.TYPE_elem.setText(String.valueOf(TYPE.get(position)));
         holder.CATEGORY_elem.setText(String.valueOf(CATEGORY.get(position)));
         if( String.valueOf(TYPE.get(position)).equals("Bevétel") ) {
-            holder.VALUE_elem.setText("+ " + String.valueOf(VALUE.get(position)));
+            holder.VALUE_elem.setText(String.valueOf(VALUE.get(position)));
             holder.VALUE_elem.setTextColor(Color.GREEN);
-
         } else if( String.valueOf(TYPE.get(position)).equals("Kiadás") ) {
-            holder.VALUE_elem.setText("- " + String.valueOf(VALUE.get(position)));
+            holder.VALUE_elem.setText(String.valueOf(VALUE.get(position)));
             holder.VALUE_elem.setTextColor(Color.RED);
         }
         holder.DATE_elem.setText(String.valueOf(DATE.get(position)));

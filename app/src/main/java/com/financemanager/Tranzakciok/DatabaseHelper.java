@@ -19,12 +19,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "FinanceManager.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "Tranzakciok";
-    private static final String COLUMN_ID = "id";
-    private static final String COLUMN_TYPE = "type";
-    private static final String COLUMN_CATEGORY = "category";
-    private static final String COLUMN_VALUE = "value";
-    private static final String COLUMN_DATE = "date";
+    public static final String TABLE_NAME = "Tranzakciok";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_TYPE = "type";
+    public static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_VALUE = "value";
+    public static final String COLUMN_DATE = "date";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -74,7 +74,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String currentDateandTime = sdf.format(new Date());
             query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + currentDateandTime + "\" order by date DESC";
         }
-
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;

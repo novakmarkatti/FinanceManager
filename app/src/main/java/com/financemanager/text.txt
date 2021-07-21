@@ -1,3 +1,14 @@
+    public SimpleCursorAdapter populateListView(){
+        Cursor cursor = db.rawQuery("SELECT category,SUM(value) FROM " + DatabaseHelper.TABLE_NAME + " group by category", null);
+        int viewIds[] = { R.id.kategoria, R.id.ertek};
+        String columns[] = { "category", "value"};
+        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
+                context, R.layout.attekintes_item, db.getA, columns, viewIds
+        );
+        return simpleCursorAdapter;
+    }
+
+
 ---------------------------------------------------------------------
 activity_main.xml bben a content_main-t hivja be
 ---------------------------------------------------------------------
