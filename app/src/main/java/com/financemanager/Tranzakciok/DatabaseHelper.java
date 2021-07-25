@@ -70,9 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else if(!start.equals("") && end.equals("")) {
             query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + start + "\" order by date DESC";
         } else {
+            /*
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
             String currentDateandTime = sdf.format(new Date());
             query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + currentDateandTime + "\" order by date DESC";
+            */
+            query = "SELECT * FROM " + TABLE_NAME + " order by date DESC";
         }
 
         SQLiteDatabase db = this.getReadableDatabase();
