@@ -12,14 +12,17 @@
         <activity
             android:name=".Tranzakciok.UpdateActivity"
             android:label="Manage transaction"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Tranzakciok.AddActivity"
             android:label="Add transaction"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FinanceManager.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

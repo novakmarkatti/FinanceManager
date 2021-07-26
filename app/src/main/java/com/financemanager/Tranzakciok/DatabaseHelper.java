@@ -6,12 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -63,18 +58,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor readAllData(String start, String end){
+    public Cursor readAllData(String date){
         String query;
-        if(!start.equals("") && !end.equals("")){
-            query = "SELECT * FROM " + TABLE_NAME + " WHERE date between \"" + start + "\" and \"" + end + "\" order by date DESC";
-        } else if(!start.equals("") && end.equals("")) {
-            query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + start + "\" order by date DESC";
+        if( !date.equals("") ) {
+            if( date.contains("-") ){
+                String[] param = date.split("-");
+                query = "SELECT * FROM " + TABLE_NAME + " WHERE date between \"" + param[0] + "\" and \"" + param[1] + "\" order by date DESC";
+            } else {
+                query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + date + "\" order by date DESC";
+            }
         } else {
-            /*
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/dd", Locale.getDefault());
-            String currentDateandTime = sdf.format(new Date());
-            query = "SELECT * FROM " + TABLE_NAME + " WHERE date==\"" + currentDateandTime + "\" order by date DESC";
-            */
             query = "SELECT * FROM " + TABLE_NAME + " order by date DESC";
         }
 

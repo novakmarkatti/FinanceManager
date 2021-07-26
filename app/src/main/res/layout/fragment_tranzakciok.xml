@@ -7,82 +7,39 @@
     android:background="@color/smoke_white">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonTranzakciok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="@color/design_default_color_primary"
-        app:srcCompat="@drawable/floating_action_button" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gray"
-        android:layout_marginBottom="80dp" />
-
-
-
-
-    <Button
-        android:id="@+id/kezdoDatumBtn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/kezdoDatumText"
-        android:layout_marginStart="10dp"
-        android:onClick="handleDateChooser1"
-        android:text="Start" />
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/constraint"
+        android:background="@color/gray" />
 
-    <TextView
-        android:id="@+id/kezdoDatumText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:text=""
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/kotojel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/kezdoDatumText"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp"
-        android:text=""
-        android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:background="@color/white">
 
-    <Button
-        android:id="@+id/vegzoDatumBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/vegzoDatumText"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/kezdoDatumBtn"
-        android:onClick="handleDateChooser2"
-        android:text="End" />
-
-    <TextView
-        android:id="@+id/vegzoDatumText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toEndOf="@+id/kotojel"
-        android:text=""
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButtonTranzakciok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/design_default_color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/floating_action_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/no_data_imageview"
